@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "milk-bottle",
+	"version": "${version}",
+	"name": "Milk bottle",
+	"description": "添加了一些新饮品，例如牛奶瓶和清害药水等等",
+	"authors": [
+		{
+			"name": "kzhik",
+			"contact": {
+				"email": "k05a4b@outlook.com",
+				"homepage": "https://kzhik.cn"
+			}
+		}
+	],
+	"contact": {
+		"homepage": "https://mcmods.kzhik.cn/milk_bottle/"
+	},
+	"icon": "assets/milk-bottle/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"cn.kzhik.milkbottle.MilkBottle"
+		]
+	},
+	"mixins": [
+		"milk-bottle.mixins.json"
+	],
+	"depends": {
+		"minecraft": ">=1.19.3",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

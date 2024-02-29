@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "minecraft:bone_meal" }
+  ],
+  "result": {
+    "item": "milk-bottle:weakness_antidote",
+    "count": 3
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "%@%",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "milk-bottle:milk_bottle"
+    },
+    "@": {
+      "item": "minecraft:golden_apple"
+    },
+    "%": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "milk-bottle:clear_harmful_potion",
+    "count": 6
+  }
+}

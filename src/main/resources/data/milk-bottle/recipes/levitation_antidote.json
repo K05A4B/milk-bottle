@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:shulker_shell" },
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "milk-bottle:milk_bottle" }
+  ],
+  "result": {
+    "item": "milk-bottle:levitation_antidote",
+    "count": 3
+  }
+}

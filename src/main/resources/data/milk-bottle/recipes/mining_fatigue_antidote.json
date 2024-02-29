@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "milk-bottle:milk_bottle" },
+    { "item": "minecraft:prismarine_shard" }
+  ],
+  "result": {
+    "item": "milk-bottle:mining_fatigue_antidote",
+    "count": 3
+  }
+}
