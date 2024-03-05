@@ -14,7 +14,9 @@
 		}
 	],
 	"contact": {
-		"homepage": "https://mcmods.kzhik.cn/milk_bottle/"
+		"homepage": "https://mcmods.kzhik.cn/milk_bottle/",
+		"issues": "https://github.com/K05A4B/milk-bottle/issues",
+		"source": "https://github.com/K05A4B/milk-bottle/"
 	},
 	"icon": "assets/milk-bottle/icon.png",
 	"environment": "*",

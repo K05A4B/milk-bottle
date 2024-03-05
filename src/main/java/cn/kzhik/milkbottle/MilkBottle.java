@@ -32,11 +32,13 @@ public class MilkBottle implements ModInitializer {
 
 		// 注册负面效果的解药
 		HashMap<String, StatusEffect> harmfulEffects = StatusEffectsArray.getHarmfulEffectsMap();
+		HashMap<String, StatusEffect> immuneEffects = StatusEffectsArray.getImmuneEffectsMap();
 		for (String effect : harmfulEffects.keySet()) {
 			AntidotePotion.registerPotion(
 					effect + "_antidote",
 					new FabricItemSettings(),
-					harmfulEffects.get(effect)
+					harmfulEffects.get(effect),
+					immuneEffects.get("immune_" + effect)
 			);
 		}
 

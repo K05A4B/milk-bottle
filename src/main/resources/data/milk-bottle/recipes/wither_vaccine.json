@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "%@%",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "milk-bottle:wither_antidote"
+    },
+    "@": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "%": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "result": {
+    "item": "milk-bottle:wither_vaccine",
+    "count": 6
+  }
+}
