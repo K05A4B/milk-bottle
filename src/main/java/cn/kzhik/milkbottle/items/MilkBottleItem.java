@@ -1,12 +1,11 @@
-package cn.kzhik.milkbottle;
+package cn.kzhik.milkbottle.items;
+import cn.kzhik.milkbottle.utils.Mod;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.MilkBucketItem;
 import net.minecraft.item.PotionItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -17,12 +16,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class milkBottleItem extends PotionItem {
+public class MilkBottleItem extends PotionItem {
 
-    public static final String MOD_ID = MilkBottle.MOD_ID;
+    public static final String MOD_ID = Mod.getModId();
     public static final String MOD_NAME = "milk_bottle";
 
-    public milkBottleItem(Settings settings) {
+    public MilkBottleItem(Settings settings) {
         super(settings);
     }
 
@@ -38,7 +37,7 @@ public class milkBottleItem extends PotionItem {
         settings.maxCount(12);
 
         Identifier id = new Identifier(MOD_ID, MOD_NAME);
-        milkBottleItem item = new milkBottleItem(settings);
+        MilkBottleItem item = new MilkBottleItem(settings);
         Registry.register(Registries.ITEM, id, item);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> {

@@ -1,11 +1,12 @@
-package cn.kzhik.milkbottle;
+package cn.kzhik.milkbottle.items;
 
+import cn.kzhik.milkbottle.utils.Mod;
+import cn.kzhik.milkbottle.utils.StatusEffectsArray;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
@@ -17,12 +18,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClearHarmfulPotion extends PotionItem {
 
-    private static final String MOD_ID = MilkBottle.MOD_ID;
+    private static final String MOD_ID = Mod.getModId();
 
     public ClearHarmfulPotion(Settings settings) {
         super(settings.maxCount(6));
@@ -30,18 +31,16 @@ public class ClearHarmfulPotion extends PotionItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        HashMap<String, StatusEffect> effects = MilkBottle.getHarmfulEffects();
+        ArrayList<StatusEffect> effects = StatusEffectsArray.getHarmfulEffects();
 
-        for (String name : effects.keySet()) {
-            StatusEffect effect = effects.get(name);
-
+        for (StatusEffect effect : effects) {
             if (user.hasStatusEffect(effect)) {
                 user.removeStatusEffect(effect);
             }
         }
 
-        user.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 20*25, 0));
-        user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20*3, 2));
+        user.addStatusEffect(new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.ABSORPTION, 20*25, 0));
+        user.addStatusEffect(new StatusEffectInstance(net.minecraft.entity.effect.StatusEffects.REGENERATION, 20*3, 2));
 
         return super.finishUsing(stack, world, user);
     }

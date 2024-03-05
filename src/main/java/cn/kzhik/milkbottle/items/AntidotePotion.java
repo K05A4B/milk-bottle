@@ -1,18 +1,16 @@
-package cn.kzhik.milkbottle;
+package cn.kzhik.milkbottle.items;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import cn.kzhik.milkbottle.utils.Mod;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.PotionItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -21,12 +19,12 @@ import java.util.List;
 
 public class AntidotePotion extends PotionItem {
 
-    private static final String MOD_ID = MilkBottle.MOD_ID;
+    private static final String MOD_ID = Mod.getModId();
     private StatusEffect type = null;
-    private String name;
+    private String name = null;
 
     public AntidotePotion(Settings settings, StatusEffect type, String name) {
-        super(settings.maxCount(3));
+        super(settings.maxCount(6));
         this.type = type;
         this.name = name;
     }

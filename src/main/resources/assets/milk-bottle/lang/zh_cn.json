@@ -38,5 +38,30 @@
   "item.milk-bottle.clear_harmful_potion.effect.empty": "清害药水",
   "item.milk-bottle.clear_harmful_potion.tooltip": "清除所有负面效果",
   "item.milk-bottle.clear_harmful_potion.effect1": "生命恢复 (00:03)",
-  "item.milk-bottle.clear_harmful_potion.effect2" : "伤害吸收 (00:25)"
+  "item.milk-bottle.clear_harmful_potion.effect2" : "伤害吸收 (00:25)",
+
+  "item.milk-bottle.harmful_vaccine.effect.empty": "免疫药水",
+  "item.milk-bottle.slowness_vaccine.effect.empty": "缓慢疫苗",
+  "item.milk-bottle.mining_fatigue_vaccine.effect.empty": "挖掘疲劳疫苗",
+  "item.milk-bottle.nausea_vaccine.effect.empty": "反胃疫苗",
+  "item.milk-bottle.hunger_vaccine.effect.empty": "饥饿疫苗",
+  "item.milk-bottle.weakness_vaccine.effect.empty": "虚弱疫苗",
+  "item.milk-bottle.poison_vaccine.effect.empty": "中毒疫苗",
+  "item.milk-bottle.wither_vaccine.effect.empty": "凋零疫苗",
+  "item.milk-bottle.blindness_vaccine.effect.empty": "失明疫苗",
+  "item.milk-bottle.unluck_vaccine.effect.empty": "不幸疫苗",
+  "item.milk-bottle.darkness_vaccine.effect.empty": "黑暗疫苗",
+  "item.milk-bottle.levitation_vaccine.effect.empty": "漂浮疫苗",
+
+  "effect.milk-bottle.immune_harmful": "免疫",
+  "effect.milk-bottle.immune_slowness": "缓慢免疫",
+  "effect.milk-bottle.immune_nausea": "反胃免疫",
+  "effect.milk-bottle.immune_blindness": "失明免疫",
+  "effect.milk-bottle.immune_hunger": "饥饿免疫",
+  "effect.milk-bottle.immune_weakness": "虚弱免疫",
+  "effect.milk-bottle.immune_poison": "中毒免疫",
+  "effect.milk-bottle.immune_wither": "凋零免疫",
+  "effect.milk-bottle.immune_unluck": "不幸免疫",
+  "effect.milk-bottle.immune_darkness": "黑暗免疫",
+  "effect.milk-bottle.immune_levitation": "漂浮免疫"
 }

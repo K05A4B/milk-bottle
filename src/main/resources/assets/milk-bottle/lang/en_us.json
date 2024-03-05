@@ -38,5 +38,32 @@
   "item.milk-bottle.clear_harmful_potion.effect.empty": "Potion of clear harmful",
   "item.milk-bottle.clear_harmful_potion.tooltip": "Clear all harmful effect",
   "item.milk-bottle.clear_harmful_potion.effect1": "Regeneration (00:03)",
-  "item.milk-bottle.clear_harmful_potion.effect2" : "Absorption (00:25)"
+  "item.milk-bottle.clear_harmful_potion.effect2" : "Absorption (00:25)",
+
+  "item.milk-bottle.harmful_vaccine.effect.empty": "Harmful vaccine",
+  "item.milk-bottle.slowness_vaccine.effect.empty": "Slowness vaccine",
+  "item.milk-bottle.mining_fatigue_vaccine.effect.empty": "Mining fatigue vaccine",
+  "item.milk-bottle.nausea_vaccine.effect.empty": "Nausea vaccine",
+  "item.milk-bottle.hunger_vaccine.effect.empty": "Hunger vaccine",
+  "item.milk-bottle.weakness_vaccine.effect.empty": "Weakness vaccine",
+  "item.milk-bottle.poison_vaccine.effect.empty": "Poison vaccine",
+  "item.milk-bottle.wither_vaccine.effect.empty": "Wither vaccine",
+  "item.milk-bottle.blindness_vaccine.effect.empty": "Blindness vaccine",
+  "item.milk-bottle.unluck_vaccine.effect.empty": "Bad luck vaccine",
+  "item.milk-bottle.darkness_vaccine.effect.empty": "Darkness vaccine",
+  "item.milk-bottle.levitation_vaccine.effect.empty": "Levitation vaccine",
+
+
+  "effect.milk-bottle.immune_harmful": "Harm immunity",
+  "effect.milk-bottle.immune_slowness": "Slowness immunity",
+  "effect.milk-bottle.immune_mining_fatigue": "Mining fatigue immunity",
+  "effect.milk-bottle.immune_nausea": "Nausea immunity",
+  "effect.milk-bottle.immune_blindness": "Blindness immunity",
+  "effect.milk-bottle.immune_hunger": "Hunger immunity",
+  "effect.milk-bottle.immune_weakness": "Weakness immunity",
+  "effect.milk-bottle.immune_poison": "Poison immunity",
+  "effect.milk-bottle.immune_wither": "Wither immunity",
+  "effect.milk-bottle.immune_unluck": "Bad luck immunity",
+  "effect.milk-bottle.immune_darkness": "Darkness immunity",
+  "effect.milk-bottle.immune_levitation": "Levitation immunity"
 }
