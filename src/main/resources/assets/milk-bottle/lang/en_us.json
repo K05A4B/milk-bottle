@@ -1,46 +1,22 @@
 {
   "item.milk-bottle.milk_bottle.effect.empty": "Milk bottle",
-  "item.milk-bottle.milk_bottle.tooltip" : "Clear all your effects",
-
   "item.milk-bottle.slowness_antidote.effect.empty": "Slowness antidote",
-  "item.milk-bottle.slowness_antidote.tooltip": "Clear slowness effect",
-
   "item.milk-bottle.mining_fatigue_antidote.effect.empty": "Mining fatigue antidote",
-  "item.milk-bottle.mining_fatigue_antidote.tooltip": "Clear mining fatigue effect",
-
   "item.milk-bottle.nausea_antidote.effect.empty": "Nausea antidote",
-  "item.milk-bottle.nausea_antidote.tooltip": "Clear nausea effect",
-
   "item.milk-bottle.blindness_antidote.effect.empty": "Blindness antidote",
-  "item.milk-bottle.blindness_antidote.tooltip": "Clear blindness effect",
-
   "item.milk-bottle.hunger_antidote.effect.empty": "Hunger antidote",
-  "item.milk-bottle.hunger_antidote.tooltip": "Clear hunger effect",
-
   "item.milk-bottle.weakness_antidote.effect.empty": "Weakness antidote",
-  "item.milk-bottle.weakness_antidote.tooltip": "Clear weakness effect",
-
   "item.milk-bottle.poison_antidote.effect.empty": "Poison antidote",
-  "item.milk-bottle.poison_antidote.tooltip": "Clear poison effect",
-
   "item.milk-bottle.wither_antidote.effect.empty": "Wither antidote",
-  "item.milk-bottle.wither_antidote.tooltip": "Clear wither effect",
-
   "item.milk-bottle.unluck_antidote.effect.empty": "Unluck antidote",
-  "item.milk-bottle.unluck_antidote.tooltip": "Clear unluck effect",
-
   "item.milk-bottle.darkness_antidote.effect.empty": "Darkness antidote",
-  "item.milk-bottle.darkness_antidote.tooltip": "Clear darkness effect",
-
   "item.milk-bottle.levitation_antidote.effect.empty": "Levitation antidote",
-  "item.milk-bottle.levitation_antidote.tooltip": "Clear levitation effect",
-
-  "item.milk-bottle.clear_harmful_potion.effect.empty": "Potion of clear harmful",
-  "item.milk-bottle.clear_harmful_potion.tooltip": "Clear all harmful effect",
-  "item.milk-bottle.clear_harmful_potion.effect1": "Regeneration (00:03)",
-  "item.milk-bottle.clear_harmful_potion.effect2" : "Absorption (00:25)",
-
-  "item.milk-bottle.harmful_vaccine.effect.empty": "Harmful vaccine",
+  "item.milk-bottle.harmful_antidote.effect.empty": "Antidote",
+  "item.milk-bottle.harmful_antidote.effect1": "Regeneration II (00:03)",
+  "item.milk-bottle.harmful_antidote.effect2": "Absorption I (00:25)",
+  "item.milk-bottle.harmful_vaccine.effect.empty": "Immune Potion",
+  "item.milk-bottle.harmful_vaccine.effect1": "Regeneration III (00:06)",
+  "item.milk-bottle.harmful_vaccine.effect2": "Absorption II (01:00)",
   "item.milk-bottle.slowness_vaccine.effect.empty": "Slowness vaccine",
   "item.milk-bottle.mining_fatigue_vaccine.effect.empty": "Mining fatigue vaccine",
   "item.milk-bottle.nausea_vaccine.effect.empty": "Nausea vaccine",
@@ -52,7 +28,6 @@
   "item.milk-bottle.unluck_vaccine.effect.empty": "Bad luck vaccine",
   "item.milk-bottle.darkness_vaccine.effect.empty": "Darkness vaccine",
   "item.milk-bottle.levitation_vaccine.effect.empty": "Levitation vaccine",
-
 
   "effect.milk-bottle.immune_harmful": "Harm immunity",
   "effect.milk-bottle.immune_slowness": "Slowness immunity",

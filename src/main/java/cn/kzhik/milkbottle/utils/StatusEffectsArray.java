@@ -1,6 +1,5 @@
 package cn.kzhik.milkbottle.utils;
 
-import cn.kzhik.milkbottle.effects.ImmuneAnyEffect;
 import cn.kzhik.milkbottle.effects.ImmuneEffects;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;

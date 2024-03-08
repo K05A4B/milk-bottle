@@ -16,50 +16,64 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class AntidotePotion extends PotionItem {
 
     private static final String MOD_ID = Mod.getModId();
-    private final StatusEffect effect;
-    private final StatusEffect rareEffect;
-    private String name = null;
+    private StatusEffect rareEffect = null;
+    private ArrayList<StatusEffect> effects = new ArrayList<>();
 
     private static final Random random = new Random();
 
-    public AntidotePotion(Settings settings, StatusEffect effect, StatusEffect rareEffect, String name) {
+    public AntidotePotion(Settings settings, ArrayList<StatusEffect> effects, StatusEffect rareEffect) {
         super(settings.maxCount(6));
-        this.effect = effect;
+        this.effects = effects;
         this.rareEffect = rareEffect;
-        this.name = name;
     }
 
-    @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        user.removeStatusEffect(effect);
-        int duration = 20*60;
-        double probability = 0.0095;
-
-        if (random.nextDouble() < probability) {
-            user.addStatusEffect(new StatusEffectInstance(rareEffect, duration));
-        }
-
-        return super.finishUsing(stack, world, user);
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable("item.milk-bottle." + name + ".tooltip"));
-    }
-
-    public static void registerPotion(String name, Settings settings, StatusEffect effect, StatusEffect rareEffect) {
+    public static AntidotePotion register(String name, Settings settings, ArrayList<StatusEffect> effects, StatusEffect rareEffect) {
         Identifier id = new Identifier(MOD_ID, name);
-        AntidotePotion item =  new AntidotePotion(settings, effect, rareEffect, name);
+        AntidotePotion item = new AntidotePotion(settings, effects, rareEffect);
         Registry.register(Registries.ITEM, id, item);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(content -> {
             content.add(item);
         });
+
+        return item;
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+    }
+
+    public static AntidotePotion register(String name, Settings settings, StatusEffect effect, StatusEffect rareEffect) {
+        ArrayList<StatusEffect> effects = new ArrayList<>();
+        effects.add(effect);
+
+        return AntidotePotion.register(name, settings, effects, rareEffect);
+    }
+
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        for (StatusEffect effect : effects) {
+            if (user.hasStatusEffect(effect)) {
+                user.removeStatusEffect(effect);
+            }
+        }
+
+        int max = 60;
+        int min = 40;
+        int duration = 20 * (random.nextInt(max) % (max - min + 1) + min);
+        double probability = 0.0095;
+
+        if (random.nextDouble() < probability && rareEffect != null) {
+            user.addStatusEffect(new StatusEffectInstance(rareEffect, duration));
+        }
+
+        return super.finishUsing(stack, world, user);
     }
 }
