@@ -40,5 +40,8 @@
   "effect.milk-bottle.immune_wither": "Wither immunity",
   "effect.milk-bottle.immune_unluck": "Bad luck immunity",
   "effect.milk-bottle.immune_darkness": "Darkness immunity",
-  "effect.milk-bottle.immune_levitation": "Levitation immunity"
+  "effect.milk-bottle.immune_levitation": "Levitation immunity",
+  "effect.milk-bottle.rain_of_wealth": "Rain of wealth",
+  "item.milk-bottle.wealth_bottle.effect.empty": "Wealth bottle",
+  "item.milk-bottle.wealth_bottle.tooltip1": "Rain of wealth %s(%s)"
 }

@@ -1,6 +1,6 @@
 package cn.kzhik.milkbottle.items;
 
-import cn.kzhik.milkbottle.effects.ImmuneEffects;
+import cn.kzhik.milkbottle.effects.Effects;
 import cn.kzhik.milkbottle.utils.Mod;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class HarmfulVaccine extends VaccinePotion {
     public HarmfulVaccine() {
-        super(new FabricItemSettings(), ImmuneEffects.IMMUNE_HARMFUL, 20*60*8);
+        super(new FabricItemSettings(), Effects.IMMUNE_HARMFUL, 20 * 60 * 8);
     }
 
     @Override

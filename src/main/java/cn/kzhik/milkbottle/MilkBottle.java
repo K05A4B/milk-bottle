@@ -1,6 +1,8 @@
 package cn.kzhik.milkbottle;
 
 import cn.kzhik.milkbottle.items.*;
+import cn.kzhik.milkbottle.items.wealthBottles.WealthBottle;
+import cn.kzhik.milkbottle.items.wealthBottles.WealthBottleII;
 import cn.kzhik.milkbottle.utils.StatusEffectsArray;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -20,6 +22,10 @@ public class MilkBottle implements ModInitializer {
 		MilkBottleItem.registerItem();
 		registerAntidotePotion(); // 注册解药系列药水
 		registerVaccinePotion(); // 注册免疫系列药水
+
+		// 注册财富药水
+		WealthBottle.register();
+		WealthBottleII.register();
 	}
 
 	private void registerAntidotePotion() {

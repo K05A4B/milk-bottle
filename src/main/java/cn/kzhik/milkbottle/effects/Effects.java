@@ -2,13 +2,11 @@ package cn.kzhik.milkbottle.effects;
 
 import cn.kzhik.milkbottle.utils.Mod;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-public class ImmuneEffects {
+public class Effects {
     public static StatusEffect IMMUNE_HARMFUL = register("immune_harmful", new ImmuneHarmfulEffect());
     public static StatusEffect IMMUNE_SLOWNESS = register("immune_slowness", new ImmuneSlownessEffect());
     public static StatusEffect IMMUNE_MINING_FATIGUE = register("immune_mining_fatigue", new ImmuneMiningFatigueEffect());
@@ -21,9 +19,11 @@ public class ImmuneEffects {
     public static StatusEffect IMMUNE_UNLUCK = register("immune_unluck", new ImmuneUnluckEffect());
     public static StatusEffect IMMUNE_DARKNESS = register("immune_darkness", new ImmuneDarknessEffect());
     public static StatusEffect IMMUNE_LEVITATION = register("immune_levitation", new ImmuneLevitationEffect());
+    public static StatusEffect RAIN_OF_WEALTH = register(RainOfWealth.EFFECT_ID, new RainOfWealth());
 
 
-    public ImmuneEffects() {}
+    public Effects() {
+    }
 
     private static StatusEffect register(String name, StatusEffect effect) {
         Identifier id = new Identifier(Mod.getModId(), name);

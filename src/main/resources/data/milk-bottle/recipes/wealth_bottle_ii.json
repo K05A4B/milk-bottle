@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EDE",
+    "DHD",
+    "EDE"
+  ],
+  "key": {
+    "H": {
+      "item": "milk-bottle:harmful_antidote"
+    },
+    "E": {
+      "item": "minecraft:emerald"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "result": {
+    "item": "milk-bottle:wealth_bottle_ii",
+    "count": 1
+  }
+}
