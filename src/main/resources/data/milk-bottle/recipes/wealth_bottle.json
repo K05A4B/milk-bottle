@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IGI",
+    "GHG",
+    "IGI"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_block"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "H": {
+      "item": "milk-bottle:harmful_antidote"
+    }
+  },
+  "result": {
+    "item": "milk-bottle:wealth_bottle",
+    "count": 1
+  }
+}

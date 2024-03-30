@@ -40,5 +40,9 @@
   "effect.milk-bottle.immune_wither": "凋零免疫",
   "effect.milk-bottle.immune_unluck": "不幸免疫",
   "effect.milk-bottle.immune_darkness": "黑暗免疫",
-  "effect.milk-bottle.immune_levitation": "漂浮免疫"
+  "effect.milk-bottle.immune_levitation": "漂浮免疫",
+  "effect.milk-bottle.immune_mining_fatigue": "免疫挖掘疲劳",
+  "effect.milk-bottle.rain_of_wealth": "财富之雨",
+  "item.milk-bottle.wealth_bottle.effect.empty": "财富之瓶",
+  "item.milk-bottle.wealth_bottle.tooltip1": "财富之雨 %s(%s)"
 }

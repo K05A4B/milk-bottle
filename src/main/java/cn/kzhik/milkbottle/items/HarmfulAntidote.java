@@ -1,6 +1,6 @@
 package cn.kzhik.milkbottle.items;
 
-import cn.kzhik.milkbottle.effects.ImmuneEffects;
+import cn.kzhik.milkbottle.effects.Effects;
 import cn.kzhik.milkbottle.utils.Mod;
 import cn.kzhik.milkbottle.utils.StatusEffectsArray;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -25,7 +25,7 @@ public class HarmfulAntidote extends AntidotePotion {
     private static final String MOD_ID = Mod.getModId();
 
     public HarmfulAntidote(Settings settings) {
-        super(settings, StatusEffectsArray.getHarmfulEffects(), ImmuneEffects.IMMUNE_HARMFUL);
+        super(settings, StatusEffectsArray.getHarmfulEffects(), Effects.IMMUNE_HARMFUL);
     }
 
     public static void register(Settings settings) {

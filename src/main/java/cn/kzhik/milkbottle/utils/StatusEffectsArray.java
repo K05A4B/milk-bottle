@@ -1,6 +1,6 @@
 package cn.kzhik.milkbottle.utils;
 
-import cn.kzhik.milkbottle.effects.ImmuneEffects;
+import cn.kzhik.milkbottle.effects.Effects;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 
@@ -43,17 +43,17 @@ public class StatusEffectsArray {
     public static HashMap<String, StatusEffect> getImmuneEffectsMap() {
         HashMap<String, StatusEffect> map = new HashMap<>();
 
-        map.put("immune_slowness", ImmuneEffects.IMMUNE_SLOWNESS);
-        map.put("immune_mining_fatigue", ImmuneEffects.IMMUNE_MINING_FATIGUE);
-        map.put("immune_nausea", ImmuneEffects.IMMUNE_NAUSEA);
-        map.put("immune_blindness", ImmuneEffects.IMMUNE_BLINDNESS);
-        map.put("immune_hunger", ImmuneEffects.IMMUNE_HUNGER);
-        map.put("immune_weakness", ImmuneEffects.IMMUNE_WEAKNESS);
-        map.put("immune_poison", ImmuneEffects.IMMUNE_POTION);
-        map.put("immune_wither", ImmuneEffects.IMMUNE_WITHER);
-        map.put("immune_levitation", ImmuneEffects.IMMUNE_LEVITATION);
-        map.put("immune_unluck", ImmuneEffects.IMMUNE_UNLUCK);
-        map.put("immune_darkness", ImmuneEffects.IMMUNE_DARKNESS);
+        map.put("immune_slowness", Effects.IMMUNE_SLOWNESS);
+        map.put("immune_mining_fatigue", Effects.IMMUNE_MINING_FATIGUE);
+        map.put("immune_nausea", Effects.IMMUNE_NAUSEA);
+        map.put("immune_blindness", Effects.IMMUNE_BLINDNESS);
+        map.put("immune_hunger", Effects.IMMUNE_HUNGER);
+        map.put("immune_weakness", Effects.IMMUNE_WEAKNESS);
+        map.put("immune_poison", Effects.IMMUNE_POTION);
+        map.put("immune_wither", Effects.IMMUNE_WITHER);
+        map.put("immune_levitation", Effects.IMMUNE_LEVITATION);
+        map.put("immune_unluck", Effects.IMMUNE_UNLUCK);
+        map.put("immune_darkness", Effects.IMMUNE_DARKNESS);
 
         return map;
     }
