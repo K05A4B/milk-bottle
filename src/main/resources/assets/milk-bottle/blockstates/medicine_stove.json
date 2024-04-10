@@ -1,0 +1,42 @@
+{
+  "variants": {
+    "facing=north,work_state=0": {
+      "model": "milk-bottle:block/medicine_stove",
+      "uvlock": true
+    },
+    "facing=east,work_state=0": {
+      "model": "milk-bottle:block/medicine_stove",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,work_state=0": {
+      "model": "milk-bottle:block/medicine_stove",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,work_state=0": {
+      "model": "milk-bottle:block/medicine_stove",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,work_state=1": {
+      "model": "milk-bottle:block/medicine_stove_working",
+      "uvlock": true
+    },
+    "facing=east,work_state=1": {
+      "model": "milk-bottle:block/medicine_stove_working",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,work_state=1": {
+      "model": "milk-bottle:block/medicine_stove_working",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,work_state=1": {
+      "model": "milk-bottle:block/medicine_stove_working",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}
