@@ -1,0 +1,168 @@
+package cn.kzhik.milkbottle.utils.potion;
+
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
+
+public record ModPotionNbt(ItemStack stack) {
+
+    public static final String POTION_KEY = "Potion";
+
+    public ModPotionNbt {
+        NbtCompound nbt = stack.getOrCreateNbt();
+
+        if (!nbt.contains(POTION_KEY)) {
+            NbtCompound potionNbt = new NbtCompound();
+            nbt.put(POTION_KEY, potionNbt);
+        }
+    }
+
+    public ModPotionNbt amplifier(int amplifier) {
+        NbtCompound nbt = getNbt();
+        nbt.putInt("amplifier", amplifier);
+        return this;
+    }
+
+    public int amplifier() {
+        NbtCompound nbt = getNbt();
+        return nbt.getInt("amplifier");
+    }
+
+    public ModPotionNbt duration(int duration) {
+        NbtCompound nbt = getNbt();
+        nbt.putInt("duration", duration);
+
+        return this;
+    }
+
+    public int duration() {
+        NbtCompound nbt = getNbt();
+        return nbt.getInt("duration");
+    }
+
+    public ModPotionNbt setEffects(StatusEffect... effects) {
+        NbtCompound nbt = getNbt();
+        StringBuilder effectMarshaled = new StringBuilder();
+
+        for (StatusEffect effect : effects) {
+            String effectString = null;
+            Identifier id = Registries.STATUS_EFFECT.getId(effect);
+
+            if (id != null) {
+                effectString = (id.getNamespace() + ":" + id.getPath());
+            }
+
+            if (effectString == null) {
+                continue;
+            }
+
+            effectMarshaled.append(effectString).append(";");
+        }
+
+        nbt.putString("effects", effectMarshaled.toString());
+        return this;
+    }
+
+    public ModPotionNbt appendEffect(StatusEffect effect) {
+        NbtCompound nbt = getNbt();
+        Identifier effectId = Registries.STATUS_EFFECT.getId(effect);
+        if (effectId != null) {
+            String result = getRawEffectString() + (effectId.getNamespace() + ":" + effectId.getPath()) + ";";
+            nbt.putString("effects", result);
+        }
+
+        return this;
+    }
+
+    public ArrayList<StatusEffect> getEffects() {
+        ArrayList<StatusEffect> effectSet = new ArrayList<>();
+
+        String[] effects = getRawEffects();
+
+        for (String effect : effects) {
+            String[] unmarshal = effect.split(":");
+
+            if (unmarshal.length < 2) {
+                continue;
+            }
+
+            String namespace = unmarshal[0];
+            String path = unmarshal[1];
+
+            Identifier id = new Identifier(namespace, path);
+            StatusEffect statusEffect = Registries.STATUS_EFFECT.get(id);
+
+            if (statusEffect != null) {
+                effectSet.add(statusEffect);
+            }
+        }
+
+        return effectSet;
+    }
+
+    public String getRawEffectString() {
+        NbtCompound nbt = getNbt();
+        return nbt.getString("effects");
+    }
+
+    public String[] getRawEffects() {
+        return getRawEffectString().split(";");
+    }
+
+    public StatusEffectCategory targetedAt() {
+        NbtCompound nbt = getNbt();
+
+        StatusEffectCategory res = null;
+
+        if (!nbt.contains("targetedAt")) {
+            return null;
+        }
+
+
+        int targetedAt = nbt.getInt("targetedAt");
+
+        return switch (targetedAt) {
+            case 0 -> StatusEffectCategory.BENEFICIAL;
+            case 1 -> StatusEffectCategory.HARMFUL;
+            case 2 -> StatusEffectCategory.NEUTRAL;
+            default -> null;
+        };
+    }
+
+    public ModPotionNbt setTargetedAt(StatusEffectCategory category) {
+        if (category == null) {
+            return this;
+        }
+
+        NbtCompound nbt = getNbt();
+        nbt.putInt("targetedAt", category.ordinal());
+
+        return this;
+    }
+
+    public ModPotionNbt addRevisionCount() {
+        NbtCompound nbt = getNbt();
+        nbt.putInt("revisionCount", getRevisionCount() + 1);
+        return this;
+    }
+
+    public int getRevisionCount() {
+        NbtCompound nbt = getNbt();
+        return nbt.getInt("revisionCount");
+    }
+
+    public NbtCompound getNbt() {
+        NbtCompound nbt = getRawNbt();
+
+        return nbt.getCompound(POTION_KEY);
+    }
+
+    public NbtCompound getRawNbt() {
+        return this.stack.getOrCreateNbt();
+    }
+}

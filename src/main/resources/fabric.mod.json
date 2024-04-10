@@ -23,6 +23,9 @@
 	"entrypoints": {
 		"main": [
 			"cn.kzhik.milkbottle.MilkBottle"
+        ],
+      "client": [
+        "cn.kzhik.milkbottle.MilkBottleClient"
 		]
 	},
 	"mixins": [
@@ -31,7 +34,7 @@
 	"depends": {
 		"minecraft": ">=1.19.3",
 		"java": ">=17",
-		"fabric-api": "*"
+      "fabric-api": ">=0.84.0"
 	},
 	"suggests": {
 		"another-mod": "*"

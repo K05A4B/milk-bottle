@@ -1,0 +1,9 @@
+{
+  "parent": "milk-bottle:block/template_medicine_stove",
+  "textures": {
+    "front": "milk-bottle:block/medicine_stove_front",
+    "side": "milk-bottle:block/medicine_stove_side",
+    "back": "milk-bottle:block/medicine_stove_back",
+    "top": "milk-bottle:block/medicine_stove_top"
+  }
+}
