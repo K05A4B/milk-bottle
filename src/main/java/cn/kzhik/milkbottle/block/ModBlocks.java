@@ -1,5 +1,6 @@
 package cn.kzhik.milkbottle.block;
 
+import cn.kzhik.milkbottle.MilkBottle;
 import cn.kzhik.milkbottle.utils.Mod;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -16,6 +17,6 @@ public class ModBlocks {
     }
 
     public static void registerBlocks() {
-        Mod.LOGGER.info("Registering blocks for milk-bottle mod");
+        MilkBottle.LOGGER.info("Registering blocks for milk-bottle mod");
     }
 }

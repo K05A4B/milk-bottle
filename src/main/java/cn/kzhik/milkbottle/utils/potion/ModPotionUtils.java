@@ -42,17 +42,11 @@ public class ModPotionUtils {
 
     public static void generateTooltip(ItemStack stack, List<Text> tooltip) {
         ModPotionData nbt = new ModPotionData(stack);
-        MutableText title = null;
+        Text title = null;
 
         if (stack.getItem().equals(ModItems.VACCINE)) {
-            title = Text.translatable("item.milk-bottle.vaccine.tooltip1");
-
-            if (nbt.targetedAt() == StatusEffectCategory.HARMFUL) {
-                title = Text.translatable("item.milk-bottle.vaccine.targetedAt.harmful.tooltip1",
-                        Mod.makeDurationString(nbt.getDuration()));
-            }
-
-            title = title.formatted(Formatting.GREEN);
+            title = Text.translatable("item.milk-bottle.vaccine.tooltip1")
+                    .formatted(Formatting.GREEN);
         }
 
         if (stack.getItem().equals(ModItems.ANTIDOTE)) {

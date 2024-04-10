@@ -17,7 +17,6 @@
   "item.milk-bottle.antidote.targetedAt.beneficial": "Beneficial antidote",
   "item.milk-bottle.antidote.targetedAt.neutral": "Neutral antidote",
   "item.milk-bottle.vaccine.targetedAt.harmful": "Immune potion",
-  "item.milk-bottle.vaccine.targetedAt.harmful.tooltip1": "Harm effects immunity(%s)",
   "item.milk-bottle.vaccine.minecraft.slowness": "Slowness vaccine",
   "item.milk-bottle.vaccine.minecraft.mining_fatigue": "Mining fatigue vaccine",
   "item.milk-bottle.vaccine.minecraft.nausea": "Nausea vaccine",

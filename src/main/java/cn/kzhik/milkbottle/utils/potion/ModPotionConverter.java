@@ -1,6 +1,7 @@
 package cn.kzhik.milkbottle.utils.potion;
 
 import cn.kzhik.milkbottle.item.ModItems;
+import cn.kzhik.milkbottle.utils.Constants;
 import cn.kzhik.milkbottle.utils.potion.modifier.*;
 import cn.kzhik.milkbottle.utils.potion.postProcessor.ModPotionPostProcessor;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -18,6 +19,7 @@ import net.minecraft.util.Identifier;
 import java.util.*;
 
 public class ModPotionConverter {
+    private static final int durationDelta = Constants.DEFAULT_DURATION;
     private final Stack<ItemStack> mainMaterials = new Stack<>();
     private final HashSet<Item> ancillaryMaterials = new HashSet<>();
     private final Queue<ItemStack> bufferQueue = new LinkedList<>();

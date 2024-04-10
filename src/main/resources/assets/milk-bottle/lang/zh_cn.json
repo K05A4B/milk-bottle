@@ -19,7 +19,6 @@
   "item.milk-bottle.vaccine": "未定义的疫苗",
   "item.milk-bottle.vaccine.multi": "多效疫苗",
   "item.milk-bottle.vaccine.targetedAt.harmful": "免疫药水",
-  "item.milk-bottle.vaccine.targetedAt.harmful.tooltip1": "负面效果免疫(%s)",
   "item.milk-bottle.vaccine.targetedAt.beneficial": "正面免疫",
   "item.milk-bottle.vaccine.targetedAt.neutral": "中立免疫",
   "item.milk-bottle.vaccine.minecraft.slowness": "缓慢疫苗",

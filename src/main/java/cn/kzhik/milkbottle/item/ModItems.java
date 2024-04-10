@@ -15,12 +15,11 @@ public class ModItems {
     public static Item ANTIDOTE = registerItem("antidote", new Antidote(new FabricItemSettings()));
     public static Item VACCINE = registerItem("vaccine", new Vaccine(new FabricItemSettings()));
     public static Item MEDICINE_STOVE = registerItem("medicine_stove", new BlockItem(ModBlocks.MEDICINE_STOVE, new FabricItemSettings()));
-
     public ModItems() {
     }
 
     public static void registerItems() {
-        Mod.LOGGER.info("Registering items for milk-bottle mod");
+        cn.kzhik.milkbottle.MilkBottle.LOGGER.info("Registering items for milk-bottle mod");
     }
 
     private static Item registerItem(String id, Item item) {

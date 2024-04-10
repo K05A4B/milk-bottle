@@ -15,8 +15,6 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-
 public class MilkBottleGroup {
     public static ItemGroup MILK_BOTTLE = FabricItemGroup.builder()
             .displayName(Text.translatable("item.milk-bottle.milk_bottle"))
@@ -25,37 +23,35 @@ public class MilkBottleGroup {
             .build();
 
     private static void addItems(ItemGroup.DisplayContext context, ItemGroup.Entries entries) {
+
         entries.add(ModItems.MILK_BOTTLE);
-        ArrayList<ItemStack> antidoteList = new ArrayList<>();
-        ArrayList<ItemStack> vaccineList = new ArrayList<>();
 
-        for (StatusEffect effect : Constants.VANILLA_HARMFUL_EFFECTS) {
-            ModPotionData antidote = new ModPotionData(new ItemStack(ModItems.ANTIDOTE));
-            ModPotionData vaccine = new ModPotionData(new ItemStack(ModItems.VACCINE));
-            ModPotionEffect tmp = new ModPotionEffect(Constants.DEFAULT_DURATION, 0, effect);
-
-            antidote.addEffect(tmp);
-            vaccine.addEffect(tmp);
-
-            antidoteList.add(antidote.stack().copy());
-            vaccineList.add(vaccine.stack().copy());
+        // 添加原版所有负面效果的解药
+        for (StatusEffect harmfulEffect : Constants.VANILLA_HARMFUL_EFFECTS) {
+            ModPotionData antidoteNbt = new ModPotionData(new ItemStack(ModItems.ANTIDOTE));
+            antidoteNbt.setEffects(new ModPotionEffect(0, 0, harmfulEffect));
+            entries.add(antidoteNbt.stack());
         }
 
-        ModPotionData template = new ModPotionData(ItemStack.EMPTY);
-        template.setTargetedAt(StatusEffectCategory.HARMFUL);
-        template.setDuration(Constants.DEFAULT_DURATION);
+        // 添加净化药水
+        ModPotionData harmfulAntidote = new ModPotionData(new ItemStack(ModItems.ANTIDOTE));
+        harmfulAntidote.setTargetedAt(StatusEffectCategory.HARMFUL);
+        entries.add(harmfulAntidote.stack());
 
-        ItemStack harmfulAntidote = new ItemStack(ModItems.ANTIDOTE);
-        harmfulAntidote.setNbt(template.getRawNbt());
+        // 一样是添加负面效果的疫苗（你可能决定这个循环没必要，但是我也不想这样写，我不知道该怎么样给物品组排序）
+        for (StatusEffect harmfulEffect : Constants.VANILLA_HARMFUL_EFFECTS) {
+            ModPotionData vaccineNbt = new ModPotionData(new ItemStack(ModItems.VACCINE));
+            vaccineNbt.setEffects(new ModPotionEffect(Constants.VACCINE_DEFAULT_DURATION, 0, harmfulEffect));
+            entries.add(vaccineNbt.stack());
+        }
 
-        ItemStack harmfulVaccine = new ItemStack(ModItems.VACCINE);
-        harmfulVaccine.setNbt(template.getRawNbt());
+        // 添加免疫药水
+        ModPotionData harmfulVaccine = new ModPotionData(new ItemStack(ModItems.VACCINE));
+        harmfulVaccine.setTargetedAt(StatusEffectCategory.HARMFUL);
+        harmfulVaccine.setDuration(Constants.VACCINE_DEFAULT_DURATION);
+        entries.add(harmfulVaccine.stack());
 
-        antidoteList.add(harmfulAntidote);
-        vaccineList.add(harmfulVaccine);
-
-        entries.addAll(antidoteList);
-        entries.addAll(vaccineList);
+        entries.add(ModItems.MEDICINE_STOVE);
     }
 
     public static void registerGroup() {
