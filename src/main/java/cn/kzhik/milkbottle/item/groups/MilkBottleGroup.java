@@ -56,6 +56,7 @@ public class MilkBottleGroup {
 
         entries.addAll(antidoteList);
         entries.addAll(vaccineList);
+        entries.add(ModItems.MEDICINE_STOVE);
     }
 
     public static void registerGroup() {

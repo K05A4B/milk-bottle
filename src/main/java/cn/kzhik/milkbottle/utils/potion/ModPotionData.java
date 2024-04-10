@@ -39,7 +39,7 @@ public record ModPotionData(ItemStack stack) {
         NbtCompound nbt = getNbt();
 
         if (!nbt.contains("effects")) {
-            return new ArrayList<ModPotionEffect>();
+            return new ArrayList<>();
         }
 
         NbtList effectList = (NbtList) nbt.get("effects");

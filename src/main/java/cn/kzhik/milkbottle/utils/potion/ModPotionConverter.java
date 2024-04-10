@@ -19,14 +19,14 @@ import java.util.*;
 
 public class ModPotionConverter {
     private final Stack<ItemStack> mainMaterials = new Stack<>();
-    private final HashSet<Item> ancillaryMaterials = new HashSet<>();
+    private final ArrayList<Item> ancillaryMaterials = new ArrayList<>();
     private final Queue<ItemStack> bufferQueue = new LinkedList<>();
     private final Queue<ItemStack> resultQueue = new LinkedList<>();
     // 辅助材料映射表
     private final HashMap<Item, ModPotionModifier> ancillaryMaterialMap = new HashMap<>();
     private final HashSet<ModPotionModifier> globalModifier = new HashSet<>();
     private final HashSet<ModPotionPostProcessor> postProcessSet = new HashSet<>();
-    private int maxCount = 0;
+    private final int maxCount;
 
     public ModPotionConverter(int maxCount) {
         this.maxCount = maxCount;
@@ -173,6 +173,10 @@ public class ModPotionConverter {
 
     public void addGlobalModifier(ModPotionModifier modifier) {
         this.globalModifier.add(modifier);
+    }
+
+    public void addPostProcessor(ModPotionPostProcessor processor) {
+        this.postProcessSet.add(processor);
     }
 
     public void registerAncillaryMaterial(Item material, ModPotionModifier modifier) {

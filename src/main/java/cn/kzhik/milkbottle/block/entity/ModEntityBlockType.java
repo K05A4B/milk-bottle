@@ -11,9 +11,7 @@ import net.minecraft.util.Identifier;
 public class ModEntityBlockType {
 
     public static void registerEntityBlockType() {
-    }
-
-    public static final BlockEntityType<MedicineStoveEntity> MEDICINE_STOVE_ENTITY = Registry.register(
+    }    public static final BlockEntityType<MedicineStoveEntity> MEDICINE_STOVE_ENTITY = Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
             new Identifier(Mod.getModId(), "medicine_stove_entity"),
             FabricBlockEntityTypeBuilder.create(MedicineStoveEntity::new, ModBlocks.MEDICINE_STOVE).build()

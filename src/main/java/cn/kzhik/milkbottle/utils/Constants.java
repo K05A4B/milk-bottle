@@ -29,7 +29,6 @@ public class Constants {
     };
     public static HashMap<StatusEffect, StatusEffect> EFFECT_TO_IMMUNITY_MAP = new HashMap<>();
     public static HashMap<StatusEffect, StatusEffect> IMMUNITY_TO_EFFECT_MAP = new HashMap<>();
-
     public Constants() {
 
     }

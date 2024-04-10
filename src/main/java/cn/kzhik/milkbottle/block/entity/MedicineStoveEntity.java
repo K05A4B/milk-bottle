@@ -22,7 +22,6 @@ public class MedicineStoveEntity extends BlockEntity {
     private final ModPotionConverter converter = new ModPotionConverter(3);
     public ArrayList<TickProcessor> processList = new ArrayList<>();
     protected BlockState blockState;
-
     public MedicineStoveEntity(BlockPos pos, BlockState state) {
         super(ModEntityBlockType.MEDICINE_STOVE_ENTITY, pos, state);
         this.blockState = state;
