@@ -19,7 +19,7 @@ public class ModItems {
     }
 
     public static void registerItems() {
-        cn.kzhik.milkbottle.MilkBottle.LOGGER.info("Registering items for milk-bottle mod");
+        Mod.LOGGER.info("Registering items for milk-bottle mod");
     }
 
     private static Item registerItem(String id, Item item) {

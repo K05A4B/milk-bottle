@@ -1,0 +1,5 @@
+{
+  "modifier": "qualified_modifier",
+  "material": "minecraft:diamond",
+  "entry": "cn.kzhik.milkbottle.utils.potion.modifier.UpgradePotionModifier"
+}

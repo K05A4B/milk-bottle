@@ -13,7 +13,6 @@ public class Constants {
     public static int ANTIDOTE_MAX_COUNT = 6;
     public static int MILK_BOTTLE_MAX_COUNT = 12;
     public static int MEDICINE_STOVE_DELAY = 400;
-    public static String MEDICINE_STOVE_WORKING_PROCESSOR = "medicine_stove_working_processor";
     public static StatusEffect[] VANILLA_HARMFUL_EFFECTS = {
             StatusEffects.SLOWNESS,
             StatusEffects.MINING_FATIGUE,

@@ -1,4 +1,4 @@
-package cn.kzhik.milkbottle.utils.block;
+package cn.kzhik.milkbottle.utils.tick.processor;
 
 import cn.kzhik.milkbottle.block.entity.MedicineStoveEntity;
 import cn.kzhik.milkbottle.utils.Constants;
@@ -29,7 +29,7 @@ public class MedicineStoveTickProcessor implements TickProcessor {
 
     @Override
     public void process(World world, BlockPos pos, BlockState state, BlockEntity entity) {
-        if (waitingTick % 100 == 0 || waitingTick == 100) {
+        if (waitingTick % 100 == 0 && waitingTick != 0 || waitingTick == Constants.MEDICINE_STOVE_DELAY) {
             if (world != null) {
                 world.playSound(null, pos, SoundEvents.BLOCK_BEACON_AMBIENT, SoundCategory.BLOCKS, 1.0f, 1.0f);
             }
@@ -38,14 +38,15 @@ public class MedicineStoveTickProcessor implements TickProcessor {
         if (waitingTick <= 0) {
             converter.converted();
             this.entity.setWorkState(MedicineStoveEntity.WorkState.RELEASE);
+            this.entity.waitingTick = Constants.MEDICINE_STOVE_DELAY; // 重置实体方块的waitingTick
             this.entity.markDirty(); // 完成后更新nbt数据
 
             if (world != null) {
                 world.playSound(null, pos, SoundEvents.BLOCK_BEACON_DEACTIVATE, SoundCategory.BLOCKS, 1.0f, 1.0f);
             }
-
         }
 
+        this.entity.waitingTick = waitingTick; // 更新方块实体的waitingTick
         waitingTick--;
     }
 

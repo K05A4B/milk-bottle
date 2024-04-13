@@ -1,0 +1,7 @@
+{
+  "modifier": "effect_modifier",
+  "material": "minecraft:spider_eye",
+  "effects": [
+    "minecraft:poison"
+  ]
+}

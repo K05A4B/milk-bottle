@@ -1,0 +1,5 @@
+{
+  "modifier": "qualified_modifier",
+  "material": "minecraft:redstone",
+  "entry": "cn.kzhik.milkbottle.utils.potion.modifier.DurationExtenderModifier"
+}

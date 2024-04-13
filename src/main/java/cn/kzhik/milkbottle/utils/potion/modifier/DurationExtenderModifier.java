@@ -7,6 +7,10 @@ import cn.kzhik.milkbottle.utils.potion.ModPotionEffect;
 public class DurationExtenderModifier implements ModPotionModifier {
     @Override
     public ModPotionData modify(ModPotionData data) {
+        if (data.getRevisionCount() > 9) {
+            return data;
+        }
+
         if (data.targetedAt() != null) {
             data.setDuration(getNewDuration(data, data.getDuration()));
             return data;

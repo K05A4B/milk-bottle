@@ -1,0 +1,7 @@
+{
+  "material": "minecraft:rotten_flesh",
+  "modifier": "effect_modifier",
+  "effects": [
+    "minecraft:hunger"
+  ]
+}

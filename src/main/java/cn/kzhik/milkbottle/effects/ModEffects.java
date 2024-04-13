@@ -1,6 +1,5 @@
 package cn.kzhik.milkbottle.effects;
 
-import cn.kzhik.milkbottle.MilkBottle;
 import cn.kzhik.milkbottle.utils.Constants;
 import cn.kzhik.milkbottle.utils.Mod;
 import net.minecraft.entity.effect.StatusEffect;
@@ -38,7 +37,7 @@ public class ModEffects {
     }
 
     public static void registerEffects() {
-        MilkBottle.LOGGER.info("Registering effects for milk-bottle mod");
+        Mod.LOGGER.info("Registering effects for milk-bottle mod");
     }
 }
 

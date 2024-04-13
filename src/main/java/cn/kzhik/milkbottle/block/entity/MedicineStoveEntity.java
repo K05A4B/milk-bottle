@@ -1,15 +1,23 @@
 package cn.kzhik.milkbottle.block.entity;
 
 import cn.kzhik.milkbottle.block.MedicineStove;
-import cn.kzhik.milkbottle.utils.block.MedicineStoveTickProcessor;
+import cn.kzhik.milkbottle.screen.MedicineStoveScreenHandler;
 import cn.kzhik.milkbottle.utils.potion.ModPotionConverter;
 import cn.kzhik.milkbottle.utils.tick.TickProcessor;
+import cn.kzhik.milkbottle.utils.tick.processor.MedicineStoveTickProcessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -17,10 +25,34 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 
 
-public class MedicineStoveEntity extends BlockEntity {
-
+public class MedicineStoveEntity extends BlockEntity implements NamedScreenHandlerFactory {
     private final ModPotionConverter converter = new ModPotionConverter(3);
-    public ArrayList<TickProcessor> processList = new ArrayList<>();
+    private final ArrayList<TickProcessor> processList = new ArrayList<>();
+    public int waitingTick = 0;
+
+    public final PropertyDelegate propertyDelegate = new PropertyDelegate() {
+        @Override
+        public int get(int index) {
+            if (index == 0) {
+                return MedicineStoveEntity.this.waitingTick;
+            }
+
+            return 0;
+        }
+
+        @Override
+        public void set(int index, int value) {
+            if (index == 0) {
+                waitingTick = value;
+            }
+        }
+
+        @Override
+        public int size() {
+            return 1;
+        }
+    };
+
     protected BlockState blockState;
     public MedicineStoveEntity(BlockPos pos, BlockState state) {
         super(ModEntityBlockType.MEDICINE_STOVE_ENTITY, pos, state);
@@ -68,6 +100,7 @@ public class MedicineStoveEntity extends BlockEntity {
         converter.unmarshal((NbtCompound) nbt.get("MedicineStove"));
 
         if (extend != null && extend.contains("waitingTick")) {
+            this.setWorkState(WorkState.WORKING);
             this.processList.add(new MedicineStoveTickProcessor(converter, this, extend.getInt("waitingTick")));
         }
 
@@ -105,9 +138,25 @@ public class MedicineStoveEntity extends BlockEntity {
     }
 
     public void setWorkState(WorkState state) {
+        BlockState newState = this.blockState.with(MedicineStove.WORK_STATE, state.ordinal());
+
         if (world != null) {
-            world.setBlockState(pos, this.blockState.with(MedicineStove.WORK_STATE, state.ordinal()));
+            world.setBlockState(pos, newState);
         }
+
+        this.blockState = newState;
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return Text.translatable("block.milk-bottle.medicine_stove");
+    }
+
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new MedicineStoveScreenHandler(syncId, playerInventory, new SimpleInventory(6), propertyDelegate)
+                .setBlockEntity(this);
     }
 
     public enum WorkState {

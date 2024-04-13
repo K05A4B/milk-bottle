@@ -1,0 +1,7 @@
+{
+  "modifier": "effect_modifier",
+  "material": "minecraft:fermented_spider_eye",
+  "effects": [
+    "minecraft:blindness"
+  ]
+}

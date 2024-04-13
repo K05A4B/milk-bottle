@@ -1,0 +1,7 @@
+{
+  "modifier": "effect_modifier",
+  "material": "minecraft:shulker_shell",
+  "effects": [
+    "minecraft:levitation"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "modifier": "effect_modifier",
+  "material": "minecraft:echo_shard",
+  "effects": [
+    "minecraft:darkness"
+  ]
+}

@@ -1,6 +1,12 @@
 package cn.kzhik.milkbottle.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Mod {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(Mod.getModId());
+
     public Mod() {
 
     }

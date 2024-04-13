@@ -1,10 +1,12 @@
 package cn.kzhik.milkbottle.utils.potion;
 
 import cn.kzhik.milkbottle.item.ModItems;
-import cn.kzhik.milkbottle.utils.potion.modifier.*;
+import cn.kzhik.milkbottle.resources.data.medicineStove.MedicineStoveDataPack;
+import cn.kzhik.milkbottle.utils.potion.modifier.ModPotionModifier;
+import cn.kzhik.milkbottle.utils.potion.modifier.PotionTypeModifier;
+import cn.kzhik.milkbottle.utils.potion.modifier.TargetedAtModifier;
 import cn.kzhik.milkbottle.utils.potion.postProcessor.ModPotionPostProcessor;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -31,32 +33,20 @@ public class ModPotionConverter {
     public ModPotionConverter(int maxCount) {
         this.maxCount = maxCount;
 
-        // 登记效果材料
-        registerAncillaryMaterial(Items.GOLDEN_APPLE, new TargetedAtModifier(StatusEffectCategory.HARMFUL));
-        registerAncillaryMaterial(Items.FERMENTED_SPIDER_EYE, EffectModifier.build(StatusEffects.BLINDNESS));
-        registerAncillaryMaterial(Items.ECHO_SHARD, EffectModifier.build(StatusEffects.DARKNESS));
-        registerAncillaryMaterial(Items.ROTTEN_FLESH, EffectModifier.build(StatusEffects.HUNGER));
-        registerAncillaryMaterial(Items.SHULKER_SHELL, EffectModifier.build(StatusEffects.LEVITATION));
-        registerAncillaryMaterial(Items.PRISMARINE_SHARD, EffectModifier.build(StatusEffects.MINING_FATIGUE));
-        registerAncillaryMaterial(Items.PUFFERFISH, EffectModifier.build(StatusEffects.NAUSEA));
-        registerAncillaryMaterial(Items.SPIDER_EYE, EffectModifier.build(StatusEffects.POISON));
-        registerAncillaryMaterial(Items.SOUL_SAND, EffectModifier.build(StatusEffects.SLOWNESS));
-        registerAncillaryMaterial(Items.WITHER_ROSE, EffectModifier.build(StatusEffects.WITHER));
-        registerAncillaryMaterial(Items.BONE_MEAL, EffectModifier.build(StatusEffects.WEAKNESS));
+        // 读取dataPack内定义的ModPotionModifier并加入材料修改器表和全局修改器列表
+        this.ancillaryMaterialMap.putAll(MedicineStoveDataPack.qualifiedModifiers);
+        this.globalModifier.addAll(MedicineStoveDataPack.modifiers);
 
-        // 红石能延长效果时间
-        registerAncillaryMaterial(Items.REDSTONE, new DurationExtenderModifier());
-        // 钻石能将解药变成疫苗
-        registerAncillaryMaterial(Items.DIAMOND, new UpgradePotionModifier());
-
-        addGlobalModifier(new PotionTypeModifier());
+        // 净化药水的材料
+        addQualifiedModifier(Items.GOLDEN_APPLE, new TargetedAtModifier(StatusEffectCategory.HARMFUL));
+        addGlobalModifier(new PotionTypeModifier()); // 药水类型修改器
     }
 
     public static boolean isMainMaterial(ItemStack item) {
         return item.getItem() == ModItems.MILK_BOTTLE || item.getItem() == ModItems.ANTIDOTE || item.getItem() == ModItems.VACCINE;
     }
 
-    public synchronized boolean addMaterial(ItemStack item) {
+    public boolean canAddMaterial(ItemStack item) {
         if (item == null) {
             return false;
         }
@@ -66,23 +56,30 @@ public class ModPotionConverter {
         }
 
         if (isMainMaterial(item)) {
-            if (mainMaterials.size() >= this.maxCount) {
-                return false;
-            }
+            // 主材料数量大于 this.maxCount时不允许添加
+            return mainMaterials.size() < this.maxCount;
+        }
+
+        // 不允许未知的材料和已经添加过的材料添加进列表
+        return ancillaryMaterialMap.containsKey(item.getItem()) && !ancillaryMaterials.contains(item.getItem());
+    }
+
+    public synchronized boolean addMaterial(ItemStack item) {
+        if (!canAddMaterial(item)) {
+            return false;
+        }
+
+        if (isMainMaterial(item)) {
 
             // @BUG      材料压入栈内后再特定的条件下物品id会变成 minecraft:air，导致吞药水的情况
             // @CAUSE    如果外部对这个ItemStack进行了任意操作 那么就会影响到已经压入栈内的ItemStack
             // @SOLUTION 将ItemStack的拷贝压入栈内
             mainMaterials.add(item.copy());
-            return true;
-        }
-
-        if (ancillaryMaterialMap.containsKey(item.getItem()) && !ancillaryMaterials.contains(item.getItem())) {
+        } else {
             ancillaryMaterials.add(item.getItem());
-            return true;
         }
 
-        return false;
+        return true;
     }
 
     public void converted() {
@@ -179,7 +176,7 @@ public class ModPotionConverter {
         this.postProcessSet.add(processor);
     }
 
-    public void registerAncillaryMaterial(Item material, ModPotionModifier modifier) {
+    public void addQualifiedModifier(Item material, ModPotionModifier modifier) {
         this.ancillaryMaterialMap.put(material, modifier);
     }
 

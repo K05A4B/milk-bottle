@@ -1,0 +1,7 @@
+{
+  "modifier": "effect_modifier",
+  "material": "minecraft:prismarine_shard",
+  "effects": [
+    "minecraft:mining_fatigue"
+  ]
+}

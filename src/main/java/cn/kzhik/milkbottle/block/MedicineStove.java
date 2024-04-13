@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -48,14 +49,6 @@ public class MedicineStove extends BlockWithEntity {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        ActionResult result = onOperate(state, world, pos, player, hand, hit);
-        if (result == ActionResult.SUCCESS) {
-            Objects.requireNonNull(world.getBlockEntity(pos)).markDirty();
-        }
-        return result;
-    }
-
-    private ActionResult onOperate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient) {
             world.updateListeners(pos, state, state, Block.NOTIFY_LISTENERS);
             return ActionResult.SUCCESS;
@@ -66,6 +59,32 @@ public class MedicineStove extends BlockWithEntity {
             return ActionResult.FAIL;
         }
 
+        ModPotionConverter converter = entity.getConverter();
+        ItemStack material = player.getMainHandStack();
+
+        ActionResult result = onOperate(state, world, pos, player, entity);
+        if (result == ActionResult.SUCCESS) {
+            Objects.requireNonNull(world.getBlockEntity(pos)).markDirty();
+            return ActionResult.SUCCESS;
+        }
+
+        if (!converter.canAddMaterial(material)) {
+
+            NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+            if (screenHandlerFactory == null) {
+
+                return ActionResult.FAIL;
+            }
+
+            player.openHandledScreen(screenHandlerFactory);
+
+            return ActionResult.SUCCESS;
+        }
+
+        return result;
+    }
+
+    private ActionResult onOperate(BlockState state, World world, BlockPos pos, PlayerEntity player, MedicineStoveEntity entity) {
         ModPotionConverter converter = entity.getConverter();
         ItemStack material = player.getMainHandStack();
         Item materialItem = material.getItem();
@@ -89,6 +108,8 @@ public class MedicineStove extends BlockWithEntity {
 
             inventory.removeStack(inventory.selectedSlot, 1);
             entity.startConverter();
+
+            return ActionResult.SUCCESS;
         }
 
         if (materialItem.equals(Items.GLASS_BOTTLE)) {
@@ -101,6 +122,8 @@ public class MedicineStove extends BlockWithEntity {
 
             inventory.offerOrDrop(result);
             inventory.removeStack(inventory.selectedSlot, 1);
+
+            return ActionResult.SUCCESS;
         }
 
         if (converter.addMaterial(material)) {
@@ -112,6 +135,8 @@ public class MedicineStove extends BlockWithEntity {
             }
 
             inventory.removeStack(inventory.selectedSlot, 1);
+        } else {
+            return ActionResult.FAIL;
         }
 
         return ActionResult.SUCCESS;

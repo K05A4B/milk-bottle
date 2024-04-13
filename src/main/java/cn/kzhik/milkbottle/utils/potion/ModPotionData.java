@@ -10,6 +10,7 @@ import net.minecraft.nbt.NbtList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 public record ModPotionData(ItemStack stack) {
 
@@ -25,13 +26,21 @@ public record ModPotionData(ItemStack stack) {
     }
 
     public ModPotionData addEffect(ModPotionEffect effect) {
+        addEffectAll(Collections.singleton(effect));
+
+        return this;
+    }
+
+    public ModPotionData addEffectAll(Collection<ModPotionEffect> collection) {
         ArrayList<ModPotionEffect> effects = getEffects();
 
-        if (findEffectIndex(effect.getEffect()) < 0) {
-            effects.add(effect);
-            setEffects(effects);
+        for (ModPotionEffect effect : collection) {
+            if (!effects.contains(effect)) {
+                effects.add(effect);
+            }
         }
 
+        setEffects(effects);
         return this;
     }
 

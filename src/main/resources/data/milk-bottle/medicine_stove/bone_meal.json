@@ -1,0 +1,7 @@
+{
+  "modifier": "effect_modifier",
+  "material": "minecraft:soul_sand",
+  "effects": [
+    "minecraft:weakness"
+  ]
+}
