@@ -22,7 +22,10 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +36,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class MedicineStove extends BlockWithEntity {
-    public static final DirectionProperty FACING = DirectionProperty.of("facing");
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final IntProperty WORK_STATE = IntProperty.of("work_state", 0, 1);
 
     public MedicineStove(Settings settings) {
@@ -165,5 +168,15 @@ public class MedicineStove extends BlockWithEntity {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
         return checkType(type, ModEntityBlockType.MEDICINE_STOVE_ENTITY, MedicineStoveEntity::tick);
+    }
+
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return (BlockState) state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 }

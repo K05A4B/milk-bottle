@@ -1,6 +1,6 @@
 {
   "modifier": "effect_modifier",
-  "material": "minecraft:soul_sand",
+  "material": "minecraft:bone_meal",
   "effects": [
     "minecraft:weakness"
   ]

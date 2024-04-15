@@ -87,7 +87,10 @@ public class MedicineStoveScreenHandler extends ScreenHandler implements Invento
             }
 
             if (originalStack.isEmpty()) {
-                slot.setStack(ItemStack.EMPTY);
+                // 兼容1.20.4
+                // slot.setStack(ItemStack.EMPTY);
+                slot.inventory.setStack(invSlot, ItemStack.EMPTY);
+                slot.inventory.markDirty();
             } else {
                 slot.markDirty();
             }
@@ -184,6 +187,9 @@ public class MedicineStoveScreenHandler extends ScreenHandler implements Invento
                 return;
             }
 
+            if (world != null) {
+                world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            }
             sender.setStack(5, out);
         }
 
@@ -193,11 +199,15 @@ public class MedicineStoveScreenHandler extends ScreenHandler implements Invento
 
         // 燃料插槽
         ItemStack fuel = sender.getStack(4);
-        if (isRelease) {
-            if (!fuel.isEmpty()) {
-                sender.removeStack(4);
-                blockEntity.startConverter();
+        if (isRelease && !fuel.isEmpty()) {
+            if (world != null) {
+                world.playSound(null, pos, SoundEvents.BLOCK_BEACON_ACTIVATE, SoundCategory.BLOCKS, 1.0f, 1.0f);
             }
+
+            sender.removeStack(4);
+            blockEntity.startConverter();
         }
+
+        blockEntity.markDirty();
     }
 }

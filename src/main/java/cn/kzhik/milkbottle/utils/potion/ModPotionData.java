@@ -7,10 +7,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public record ModPotionData(ItemStack stack) {
 
@@ -35,7 +32,10 @@ public record ModPotionData(ItemStack stack) {
         ArrayList<ModPotionEffect> effects = getEffects();
 
         for (ModPotionEffect effect : collection) {
-            if (!effects.contains(effect)) {
+            // @BUG      一个效果被加入已经含有这个效果的药水里
+            // @CAUSE    因为只对ModPotionEffect进行检查是否有重复的，而不是比较是否存在重复的StatusEffect
+            // @SOLUTION 使用findEffectIndex来查找是否有某个效果的ModPotionEffect
+            if (findEffectIndex(effect.getEffect()) < 0) {
                 effects.add(effect);
             }
         }
@@ -88,7 +88,14 @@ public record ModPotionData(ItemStack stack) {
     }
 
     public int findEffectIndex(StatusEffect effect) {
-        ArrayList<ModPotionEffect> effects = getEffects();
+        return findEffectIndex(effect, null);
+    }
+
+    public int findEffectIndex(StatusEffect effect, List<ModPotionEffect> effects) {
+        if (effects == null) {
+            effects = getEffects();
+        }
+
         int size = effects.size();
 
         for (int i = 0; i < size; i++) {

@@ -3,14 +3,14 @@ package cn.kzhik.milkbottle.client.gui.screen;
 import cn.kzhik.milkbottle.screen.MedicineStoveScreenHandler;
 import cn.kzhik.milkbottle.utils.Constants;
 import cn.kzhik.milkbottle.utils.Mod;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.lang.reflect.Method;
 
 // 参考: https://fabricmc.net/wiki/tutorial:screenhandler
 public class MedicineStoveScreen extends HandledScreen<ScreenHandler> {
@@ -23,11 +23,23 @@ public class MedicineStoveScreen extends HandledScreen<ScreenHandler> {
 
     @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
+    }
+
+    // 修复 >=1.20.2 的版本找不到 renderBackground 的情况
+    // >=1.20.2的HandledScreen删除了renderBackground方法
+    @Override
+    public void renderBackground(DrawContext context) {
+        Method[] method = super.getClass().getDeclaredMethods();
+        for (Method value : method) {
+            String methodName = value.getName();
+
+            // 修复 <=1.20.1 的背景透明问题
+            // 实际环境中renderBackground叫method_25420, renderBackground 是反编译后的结果
+            if (methodName.equals("renderBackground") || methodName.equals("method_25420")) {
+                super.renderBackground(context);
+            }
+        }
     }
 
     public void updateProgress(DrawContext context) {
