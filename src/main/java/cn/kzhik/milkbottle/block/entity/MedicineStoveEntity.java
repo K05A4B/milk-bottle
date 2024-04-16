@@ -2,6 +2,7 @@ package cn.kzhik.milkbottle.block.entity;
 
 import cn.kzhik.milkbottle.block.MedicineStove;
 import cn.kzhik.milkbottle.screen.MedicineStoveScreenHandler;
+import cn.kzhik.milkbottle.utils.Constants;
 import cn.kzhik.milkbottle.utils.potion.ModPotionConverter;
 import cn.kzhik.milkbottle.utils.tick.TickProcessor;
 import cn.kzhik.milkbottle.utils.tick.processor.MedicineStoveTickProcessor;
@@ -26,18 +27,18 @@ import java.util.ArrayList;
 
 
 public class MedicineStoveEntity extends BlockEntity implements NamedScreenHandlerFactory {
-    private final ModPotionConverter converter = new ModPotionConverter(3);
+    private final ModPotionConverter converter = new ModPotionConverter(Constants.MEDICINE_STOVE_MAX_MAIN_MATERIAL);
     private final ArrayList<TickProcessor> processList = new ArrayList<>();
     public int waitingTick = 0;
 
     public final PropertyDelegate propertyDelegate = new PropertyDelegate() {
         @Override
         public int get(int index) {
-            if (index == 0) {
-                return MedicineStoveEntity.this.waitingTick;
-            }
-
-            return 0;
+            return switch (index) {
+                case 0 -> MedicineStoveEntity.this.waitingTick;
+                case 1 -> converter.getMainMaterials().size();
+                default -> Integer.MIN_VALUE;
+            };
         }
 
         @Override
@@ -49,7 +50,7 @@ public class MedicineStoveEntity extends BlockEntity implements NamedScreenHandl
 
         @Override
         public int size() {
-            return 1;
+            return 2;
         }
     };
 

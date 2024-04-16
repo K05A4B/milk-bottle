@@ -60,10 +60,26 @@ public class MedicineStoveScreen extends HandledScreen<ScreenHandler> {
         context.drawTexture(TEXTURE, x + 45, y + 72, u, v, width, 9);
     }
 
+    public void renderContainer(DrawContext context) {
+        MedicineStoveScreenHandler screenHandler = getScreenHandler();
+        int materialNumber = screenHandler.getMainMaterialNumber();
+
+        int u = 176;
+        int v = 0;
+        int maxNumber = Constants.MEDICINE_STOVE_MAX_MAIN_MATERIAL;
+        int posX = 19;
+        int posY = 29;
+        int height = 64;
+        int heightDelta = height / maxNumber + 1;
+
+        context.drawTexture(TEXTURE, x + posX, y + posY, u, v, 20, height - heightDelta * materialNumber);
+    }
+
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context);
         super.render(context, mouseX, mouseY, delta);
+        renderContainer(context);
         updateProgress(context);
         drawMouseoverTooltip(context, mouseX, mouseY);
     }

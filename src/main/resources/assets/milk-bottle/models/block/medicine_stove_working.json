@@ -4,6 +4,7 @@
     "front": "milk-bottle:block/medicine_stove_front_working",
     "side": "milk-bottle:block/medicine_stove_side",
     "back": "milk-bottle:block/medicine_stove_back",
-    "top": "milk-bottle:block/medicine_stove_top"
+    "top": "milk-bottle:block/medicine_stove_top",
+    "down": "milk-bottle:block/medicine_stove_down"
   }
 }
