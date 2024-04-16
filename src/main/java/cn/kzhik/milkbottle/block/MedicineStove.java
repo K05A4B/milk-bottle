@@ -36,6 +36,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public class MedicineStove extends BlockWithEntity {
+    public static String BLOCK_ID = "medicine_stove";
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final IntProperty WORK_STATE = IntProperty.of("work_state", 0, 1);
 

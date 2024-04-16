@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 public class Constants {
 
+    public static int MEDICINE_STOVE_MAX_MAIN_MATERIAL = 3;
     public static int DEFAULT_DURATION = 3600;
     public static int VACCINE_DEFAULT_DURATION = DEFAULT_DURATION;
     public static int VACCINE_MAX_COUNT = 6;

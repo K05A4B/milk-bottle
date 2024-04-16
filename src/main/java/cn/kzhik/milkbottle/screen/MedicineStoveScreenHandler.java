@@ -26,7 +26,7 @@ public class MedicineStoveScreenHandler extends ScreenHandler implements Invento
     private MedicineStoveEntity blockEntity = null;
 
     public MedicineStoveScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(6), new ArrayPropertyDelegate(1));
+        this(syncId, playerInventory, new SimpleInventory(6), new ArrayPropertyDelegate(2));
     }
 
     public MedicineStoveScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate propertyDelegate) {
@@ -106,6 +106,10 @@ public class MedicineStoveScreenHandler extends ScreenHandler implements Invento
 
     public int getWaitingTick() {
         return propertyDelegate.get(0);
+    }
+
+    public int getMainMaterialNumber() {
+        return propertyDelegate.get(1);
     }
 
     public MedicineStoveScreenHandler setBlockEntity(MedicineStoveEntity entity) {

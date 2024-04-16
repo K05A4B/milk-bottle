@@ -9,7 +9,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
-    public static Block MEDICINE_STOVE = registerBlock("medicine_stove", new MedicineStove(FabricBlockSettings.copyOf(Blocks.OBSIDIAN)));
+    public static Block MEDICINE_STOVE = registerBlock(MedicineStove.BLOCK_ID, new MedicineStove(FabricBlockSettings.copyOf(Blocks.OBSIDIAN)));
 
     private static Block registerBlock(String id, Block entry) {
         return Registry.register(Registries.BLOCK, new Identifier(Mod.getModId(), id), entry);
